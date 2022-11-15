@@ -13,7 +13,12 @@ const addNewUser = async (req, res) => {
   res.status(200).json(newUser);
 }
 
+const getUserBalance = async (req, res) => {
+
+}
+
 module.exports = {
   listUsers,
   addNewUser,
+  getUserBalance,
 };
