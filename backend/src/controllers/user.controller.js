@@ -1,4 +1,5 @@
 const { UserService, AccountService } = require('../services');
+const { hashUtil } = require('../utils');
 
 const listUsers = async (_req, res) => {
   const users = await UserService.listUsers();
@@ -7,8 +8,9 @@ const listUsers = async (_req, res) => {
 
 const addNewUser = async (req, res) => {
   const { username, password } = req.body;
+  const hashedPassword = hashUtil.generateHashedPassword(password);
   const { id } = await AccountService.addNewAccount();
-  const newUser = await UserService.addNewUser(username, password, id);
+  const newUser = await UserService.addNewUser(username, hashedPassword, id);
 
   res.status(200).json(newUser);
 }
@@ -29,7 +31,7 @@ const userTransaction = async (req, res) => {
 
   if (destinyAccountId === id) return res.status(401).json({ message: 'User can\'t pay himself/herself' });
 
-  if (balance < value) return res.status(401).json({message: 'Insufficient balance'});
+  if (balance < value) return res.status(401).json({ message: 'Insufficient balance' });
 
   const transaction = await UserService.userTransaction(id, value, destinyAccountId);
 
