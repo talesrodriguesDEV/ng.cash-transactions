@@ -21,8 +21,24 @@ const getUserBalance = async (req, res) => {
   res.status(200).json(user);
 }
 
+const userTransaction = async (req, res) => {
+  const username = req.username;
+  const { destinyAccountId, value } = req.body;
+
+  const { account: { id, balance } } = await UserService.getUser('username', username);
+
+  if (destinyAccountId === id) return res.status(401).json({ message: 'User can\'t pay himself/herself' });
+
+  if (balance < value) return res.status(401).json({message: 'Insufficient balance'});
+
+  const transaction = await UserService.userTransaction(id, value, destinyAccountId);
+
+  res.status(200).json(transaction);
+}
+
 module.exports = {
   listUsers,
   addNewUser,
   getUserBalance,
+  userTransaction,
 };
