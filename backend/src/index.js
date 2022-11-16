@@ -1,3 +1,5 @@
 const app = require('./app');
 
-app.listen(3001, () => console.log('Vai talão'));
+const port = 3001
+
+app.listen(port, () => console.log(`Listening on port ${port}`));

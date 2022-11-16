@@ -3,12 +3,14 @@ const { hashUtil } = require('../utils');
 
 const listUsers = async (_req, res) => {
   const users = await UserService.listUsers();
+
   res.status(200).json(users);
 };
 
 const addNewUser = async (req, res) => {
   const { username, password } = req.body;
   const hashedPassword = hashUtil.generateHashedPassword(password);
+
   const { id } = await AccountService.addNewAccount();
   const newUser = await UserService.addNewUser(username, hashedPassword, id);
 
