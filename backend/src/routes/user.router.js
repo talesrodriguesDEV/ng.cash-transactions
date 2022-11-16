@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const { UserController } = require('../controllers');
-const { UserMiddlewares } = require('../middlewares');
+const { UserMiddlewares, LoginMiddlewares } = require('../middlewares');
 
 const { validateUsername, validatePassword } = UserMiddlewares;
+const { isUserLogged } = LoginMiddlewares;
 
-router.get('/', UserController.listUsers);
+// router.get('/', UserController.listUsers);
 router.post('/new', validateUsername, validatePassword, UserController.addNewUser);
+router.get('/balance', isUserLogged, UserController.getUserBalance);
 
 module.exports = router;

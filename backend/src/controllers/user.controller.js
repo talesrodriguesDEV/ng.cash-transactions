@@ -14,7 +14,11 @@ const addNewUser = async (req, res) => {
 }
 
 const getUserBalance = async (req, res) => {
+  const username = req.username;
 
+  const user = await UserService.getUser('username', username);
+
+  res.status(200).json(user);
 }
 
 module.exports = {
