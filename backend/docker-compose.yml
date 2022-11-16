@@ -6,21 +6,21 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     ports:
-      - 5432:5432
+      - $POSTGRES_PORT:$POSTGRES_PORT
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - $ADMINER_PORT:$ADMINER_PORT
 
   node:
     image: node
     restart: always
     ports:
-      - 3001:3001
+      - $NODE_PORT:$NODE_PORT
     tty: true
     stdin_open: true
     command: bash

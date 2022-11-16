@@ -1,12 +1,13 @@
 const { UserService } = require('../services');
-const { jwtUtil } = require('../utils');
+const { jwtUtil, hashUtil } = require('../utils');
 
 const validateLogin = async (req, res, next) => {
   const { username, password } = req.body;
 
   const user = await UserService.getUser('username', username);
+  const validPassword = hashUtil.verifyHashedPassword(password, user.password);
 
-  if (!user || password !== user.password) return res.status(400).json({ message: 'Invalid login' });
+  if (!user || !validPassword) return res.status(400).json({ message: 'Invalid login' });
 
   return next();
 };
