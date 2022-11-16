@@ -29,9 +29,17 @@ const userTransaction = async (debitedAccountId, value, creditedAccountId) => {
   return Transaction.create({ debitedAccountId, creditedAccountId, value });
 }
 
+const listUserTransactions = async (accountId) => {
+  const debitTransactions = await Transaction.findAll({ where: { debitedAccountId: accountId } });
+  const creditTransactions = await Transaction.findAll({ where: { creditedAccountId: accountId } });
+
+  return { debitTransactions, creditTransactions };
+}
+
 module.exports = {
   listUsers,
   addNewUser,
   getUser,
   userTransaction,
+  listUserTransactions,
 };

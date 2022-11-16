@@ -11,5 +11,6 @@ router.get('/', UserController.listUsers);
 router.post('/new', validateUsername, validatePassword, UserController.addNewUser);
 router.get('/balance', isUserLogged, UserController.getUserBalance);
 router.post('/transaction', isUserLogged, UserController.userTransaction);
+router.get('/transactions-list', isUserLogged, UserController.listUserTransactions);
 
 module.exports = router;

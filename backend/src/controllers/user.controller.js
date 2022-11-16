@@ -36,9 +36,20 @@ const userTransaction = async (req, res) => {
   res.status(200).json(transaction);
 }
 
+const listUserTransactions = async (req, res) => {
+  const username = req.username;
+
+  const { account: { id } } = await UserService.getUser('username', username);
+
+  const transactions = await UserService.listUserTransactions(id);
+
+  res.status(200).json(transactions);
+}
+
 module.exports = {
   listUsers,
   addNewUser,
   getUserBalance,
   userTransaction,
+  listUserTransactions,
 };
