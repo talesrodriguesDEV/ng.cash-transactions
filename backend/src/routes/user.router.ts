@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { UserController } = require('../controllers');
-const { UserMiddlewares, LoginMiddlewares } = require('../middlewares');
+import UserController from '../controllers/user.controller';
+import LoginMiddlewares from '../middlewares/login.middleware';
+import UserMiddlewares from'../middlewares/user.middleware';
 
 const { addNewUser, getUserBalance, userTransaction, listUserTransactions } = UserController;
 const { validateUsername, validatePassword } = UserMiddlewares;
@@ -16,4 +17,4 @@ router.get('/balance', getUserBalance);
 router.post('/transaction', userTransaction);
 router.get('/transactions-list', listUserTransactions);
 
-module.exports = router;
+export default router;

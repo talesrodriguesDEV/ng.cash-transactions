@@ -2,8 +2,10 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
+import { QueryInterface } from 'sequelize';
+
 module.exports = {
-  async up (queryInterface, _Sequelize) {
+  async up (queryInterface: QueryInterface) {
     return queryInterface.bulkInsert('Accounts', [
       {
         balance: 1250.60,
@@ -18,7 +20,7 @@ module.exports = {
     ]);
   },
 
-  async down (queryInterface, _Sequelize) {
-    return queryInterface.bulkDelete('Accounts');
+  async down (queryInterface: QueryInterface) {
+    return queryInterface.bulkDelete('Accounts', {});
   }
 };

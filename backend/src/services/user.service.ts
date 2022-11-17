@@ -1,4 +1,6 @@
-const { User, Account, Transaction } = require('../models');
+import User from '../models/user';
+import Account from '../models/account';
+import Transaction from '../models/transaction';
 
 const listUsers = async () => User.findAll({
   include: [
@@ -9,9 +11,9 @@ const listUsers = async () => User.findAll({
   ],
 });
 
-const addNewUser = async (username, password, accountId) => User.create({ username, password, accountId });
+const addNewUser = async (username: string, password: string, accountId: number) => User.create({ username, password, accountId });
 
-const getUser = async (query, filter) => User.findOne({
+const getUser = async (query: string, filter: string) => User.findOne({
   where: { [query]: filter },
   include: [
     {
@@ -21,7 +23,7 @@ const getUser = async (query, filter) => User.findOne({
   ],
 });
 
-const userTransaction = async (debitedAccountId, value, creditedAccountId) => {
+const userTransaction = async (debitedAccountId: number, value: number, creditedAccountId: number) => {
   Account.decrement({ balance: value }, { where: { id: debitedAccountId } });
 
   Account.increment({ balance: value }, { where: { id: creditedAccountId } });
@@ -29,14 +31,14 @@ const userTransaction = async (debitedAccountId, value, creditedAccountId) => {
   return Transaction.create({ debitedAccountId, creditedAccountId, value });
 }
 
-const listUserTransactions = async (accountId) => {
+const listUserTransactions = async (accountId: number) => {
   const debitTransactions = await Transaction.findAll({ where: { debitedAccountId: accountId } });
   const creditTransactions = await Transaction.findAll({ where: { creditedAccountId: accountId } });
 
   return { debitTransactions, creditTransactions };
 }
 
-module.exports = {
+export default {
   listUsers,
   addNewUser,
   getUser,

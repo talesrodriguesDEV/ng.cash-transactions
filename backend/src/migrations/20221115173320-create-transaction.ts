@@ -2,17 +2,19 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
+import { QueryInterface, INTEGER, FLOAT, DATE } from 'sequelize';
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface: QueryInterface) {
     await queryInterface.createTable('Transactions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: INTEGER
       },
       debitedAccountId: {
-        type: Sequelize.INTEGER,
+        type: INTEGER,
         references: {
           model: 'Accounts',
           key: 'id',
@@ -21,29 +23,29 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       creditedAccountId: {
-        type: Sequelize.INTEGER,
+        type: INTEGER,
         references: {
           model: 'Accounts',
           key: 'id',
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       value: {
-        type: Sequelize.FLOAT
+        type: FLOAT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DATE,
       }
     });
   },
 
-  async down(queryInterface, _Sequelize) {
+  async down(queryInterface: QueryInterface) {
     await queryInterface.dropTable('Transactions');
   }
 };
