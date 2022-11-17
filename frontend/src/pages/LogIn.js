@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import TransactionsContext from '../context/TransactionsContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function LogIn() {
   const [username, setUsername] = useState('');
@@ -31,19 +31,20 @@ export default function LogIn() {
   }
 
   return (
-    <div>
-      <h1>Bem-vinda(o) de volta!</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nome:
-          <input type='text' onChange={({ target }) => setUsername(target.value)} />
-        </label>
-        <label>
-          Senha:
-          <input type='password' onChange={({ target }) => setPassword(target.value)} />
-        </label>
-        <button type='submit'>Entrar!</button>
+    <div className='flex flex-col items-center gap-12'>
+      <h1 className='text-3xl'>Bem-vinda(o) de volta!</h1>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-14'>
+        <div>
+          <label className='text-xl mr-6' htmlFor='username'>Nome:</label>
+          <input className='input' id='username' type='text' onChange={({ target }) => setUsername(target.value)} />
+        </div>
+        <div>
+          <label className='text-xl mr-6' htmlFor='password'>Senha:</label>
+          <input className='input' id='password' type='password' onChange={({ target }) => setPassword(target.value)} />
+        </div>
+        <button className='btn' type='submit'>Entrar!</button>
       </form>
+      <Link className='btn' to='/'>Voltar</Link>
     </div>
   )
 }

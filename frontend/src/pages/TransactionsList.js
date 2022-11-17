@@ -25,58 +25,60 @@ export default function TransactionsList() {
         setCreditTransactions(json.creditTransactions);
       });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
-      <table>
-        <caption>Transações de débito</caption>
-        <thead>
-          <tr>
-            <th>Pessoa recebedora</th>
-            <th>Valor</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {debitTransactions.map(({ value, createdAt, receiverAccount: { user: { username } } }, index) => {
-            const date = new Date(createdAt)
+    <div className='flex flex-col items-center gap-12'>
+      <div className='flex justify-around w-full mt-10'>
+        <table className='w-1/3'>
+          <caption className='text-2xl mb-6'>Transações de débito</caption>
+          <thead>
+            <tr>
+              <th className='w-1/3 border p-2 text-center'>Pessoa recebedora</th>
+              <th className='w-1/3 border p-2 text-center'>Valor</th>
+              <th className='w-1/3 border p-2 text-center'>Data/Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            {debitTransactions.map(({ value, createdAt, receiverAccount: { user: { username } } }, index) => {
+              const date = new Date(createdAt)
 
-            return (
-              <tr key={index}>
-                <td>{username}</td>
-                <td>{`R$ ${value.toFixed(2)}`}</td>
-                <td>{date.toLocaleString('pt-BR')}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <table>
-        <caption>Transações de crédito</caption>
-        <thead>
-          <tr>
-            <th>Pessoa doadora</th>
-            <th>Valor</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {creditTransactions.map(({ value, createdAt, giverAccount: { user: { username } } }, index) => {
-            const date = new Date(createdAt)
+              return (
+                <tr key={index}>
+                  <td className='w-1/3 border p-2 text-center'>{username}</td>
+                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${value.toFixed(2)}`}</span></td>
+                  <td className='w-1/3 border p-2 text-center'>{date.toLocaleString('pt-BR')}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <table className='w-1/3'>
+          <caption className='text-2xl mb-6'>Transações de crédito</caption>
+          <thead>
+            <tr>
+              <th className='w-1/3 border p-2 text-center'>Pessoa doadora</th>
+              <th className='w-1/3 border p-2 text-center'>Valor</th>
+              <th className='w-1/3 border p-2 text-center'>Data/Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            {creditTransactions.map(({ value, createdAt, giverAccount: { user: { username } } }, index) => {
+              const date = new Date(createdAt)
 
-            return (
-              <tr key={index}>
-                <td>{username}</td>
-                <td>{`R$ ${value.toFixed(2)}`}</td>
-                <td>{date.toLocaleString('pt-BR')}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <Link to='/user'>Voltar</Link>
+              return (
+                <tr key={index}>
+                  <td className='w-1/3 border p-2 text-center'>{username}</td>
+                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${value.toFixed(2)}`}</span></td>
+                  <td className='w-1/3 border p-2 text-center'>{date.toLocaleString('pt-BR')}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <Link className='btn' to='/user'>Voltar</Link>
     </div>
   )
 }

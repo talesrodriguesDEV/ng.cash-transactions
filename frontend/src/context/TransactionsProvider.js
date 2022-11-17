@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import TransactionsContext from './TransactionsContext';
+import logo from '../images/logo.png';
 
 export default function TransactionsProvider({ children }) {
   const [token, setToken] = useState('');
@@ -25,7 +26,10 @@ export default function TransactionsProvider({ children }) {
 
   return (
     <TransactionsContext.Provider value={objectValue}>
-      {children}
+      <div className='bg-black text-white min-h-screen flex flex-col items-center gap-16'>
+        <img className='mt-28 ml-6' src={logo} width={300} alt="NG.CASH logo" />
+        <div className='w-full'>{children}</div>
+      </div>
     </TransactionsContext.Provider>
   );
 }

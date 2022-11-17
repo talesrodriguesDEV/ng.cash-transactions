@@ -13,7 +13,7 @@ export default function User() {
 
     if (!token || !username || !balance) {
       const supply = handleReaload(setUsername, setToken, setBalance);
-      
+
       supplyToken = supply.token;
     }
 
@@ -35,7 +35,7 @@ export default function User() {
         setBalance(json.account.balance);
       });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const logOut = () => {
@@ -47,12 +47,16 @@ export default function User() {
   }
 
   return (
-    <div>
-      <h1>Hi, {username}!</h1>
-      <h2>{balance && `R$ ${balance.toFixed(2)}`}</h2>
-      <button onClick={() => navigate('/make-transaction')}>Efetuar transação</button>
-      <button onClick={() => navigate('/transactions-list')}>Consultar transações</button>
-      <button onClick={logOut}>Sair</button>
+    <div className='flex flex-col items-center gap-28'>
+      <div className='flex flex-col gap-8 items-center mt-8'>
+        <h1 className='text-5xl'>Oi, {username}!</h1>
+        {balance && <h2 className='text-xl'>Você tem <span className='text-red-700'>{`R$ ${balance.toFixed(2)}`}</span></h2>}
+      </div>
+      <div className='flex gap-16'>
+        <button className='btn' onClick={() => navigate('/make-transaction')}>Efetuar transação</button>
+        <button className='btn' onClick={() => navigate('/transactions-list')}>Consultar transações</button>
+        <button className='btn' onClick={logOut}>Sair</button>
+      </div>
     </div>
   )
 }

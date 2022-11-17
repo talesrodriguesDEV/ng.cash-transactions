@@ -16,13 +16,13 @@ export default function Transaction() {
     if (!token || !username || !balance) handleReaload(setUsername, setToken, setBalance);
 
     fetch('http://localhost:3001/users',
-    {
-      headers: { 'Content-Type': 'application/json' },
-    })
-    .then(response => response.json())
-    .then(json => setAllUsers(json));
+      {
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then(response => response.json())
+      .then(json => setAllUsers(json));
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const makeTransaction = (e) => {
@@ -34,7 +34,7 @@ export default function Transaction() {
       window.alert('Essa pessoa não está cadastrada.');
       return;
     };
- 
+
     fetch('http://localhost:3001/users/transaction',
       {
         method: 'POST',
@@ -51,7 +51,7 @@ export default function Transaction() {
       .then(json => {
         if (json.message) {
           window.alert('Pessoa usuária não autorizada.');
-          
+
           navigate('/');
         }
 
@@ -60,20 +60,20 @@ export default function Transaction() {
   }
 
   return (
-    <div>
-      <h1>Boas transações, {username}!</h1>
-      <form onSubmit={makeTransaction}>
-        <label>
-          Pessoa recebedora:
-          <input type='text' onChange={({ target }) => setDestinyUser(target.value)} />
-        </label>
-        <label>
-          Valor:
-          <input type='number' step="0.01" min="0.01" max={balance} onChange={({ target }) => setTransactionValue(target.value)} />
-        </label>
-        <button type='submit'>Enviar</button>
+    <div className='flex flex-col items-center gap-20'>
+      <h1 className='text-3xl'>Boas transações, {username}!</h1>
+      <form onSubmit={makeTransaction} className='flex flex-col gap-10'>
+        <div className='w-full flex justify-around'>
+          <label className='text-xl mr-10'>Pessoa recebedora:</label>
+          <input className='input' type='text' onChange={({ target }) => setDestinyUser(target.value)} />
+        </div>
+        <div className='w-full flex justify-around'>
+          <label className='text-xl mr-10'>Valor da transação:</label>
+          <input className='input' type='number' step="0.01" min="0.01" max={balance} onChange={({ target }) => setTransactionValue(target.value)} />
+        </div>
+        <button className='btn' type='submit'>Enviar</button>
       </form>
-      <Link to='/user'>Voltar</Link>
+      <Link className='btn' to='/user'>Voltar</Link>
     </div>
   )
 }
