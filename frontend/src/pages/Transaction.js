@@ -1,29 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react'
 import TransactionsContext from '../context/TransactionsContext';
 import { useNavigate, Link } from 'react-router-dom';
-
+import handleReaload from '../utils/handleReload';
 
 export default function Transaction() {
-  const { globalUsername, setGlobalUsername } = useContext(TransactionsContext);
+  const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext);
 
   const [allUsers, setAllUsers] = useState([]);
   const [destinyUser, setDestinyUser] = useState('');
   const [transactionValue, setTransactionValue] = useState(0);
-  const [token, setToken] = useState('');
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const localToken = localStorage.getItem('token');
-    setToken(localToken);
-
-    if (!localToken) navigate('/');
-
-    if (!globalUsername) {
-      const username = localStorage.getItem('username');
-
-      setGlobalUsername(username);
-    }
+    if (!token || !username || !balance) handleReaload(setUsername, setToken, setBalance);
 
     fetch('http://localhost:3001/users',
     {
@@ -31,6 +21,8 @@ export default function Transaction() {
     })
     .then(response => response.json())
     .then(json => setAllUsers(json));
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const makeTransaction = (e) => {
@@ -57,13 +49,19 @@ export default function Transaction() {
       })
       .then(response => response.json())
       .then(json => {
+        if (json.message) {
+          window.alert('Pessoa usuária não autorizada.');
+          
+          navigate('/');
+        }
+
         window.alert('Transação efetuada com sucesso!')
       });
   }
 
   return (
     <div>
-      <h1>Boas transações, {globalUsername}!</h1>
+      <h1>Boas transações, {username}!</h1>
       <form onSubmit={makeTransaction}>
         <label>
           Pessoa recebedora:
@@ -71,7 +69,7 @@ export default function Transaction() {
         </label>
         <label>
           Valor:
-          <input type='number' step="0.01" min="0.01" onChange={({ target }) => setTransactionValue(target.value)} />
+          <input type='number' step="0.01" min="0.01" max={balance} onChange={({ target }) => setTransactionValue(target.value)} />
         </label>
         <button type='submit'>Enviar</button>
       </form>

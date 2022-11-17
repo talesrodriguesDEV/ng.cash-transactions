@@ -21,56 +21,60 @@ export default function TransactionsList() {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         setDebitTransactions(json.debitTransactions);
         setCreditTransactions(json.creditTransactions);
       });
-  }, []);
 
-  useEffect(() => {
-    console.log(creditTransactions);
-    console.log(debitTransactions);
-  }, [creditTransactions, debitTransactions]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
       <table>
         <caption>Transações de débito</caption>
-        <tr>
-          <th>Pessoa recebedora</th>
-          <th>Valor</th>
-          <th>Data</th>
-        </tr>
-        {debitTransactions.map(({ value, createdAt, receiverAccount: { user: { username } } }, index) => {
-          const date = new Date(createdAt)
+        <thead>
+          <tr>
+            <th>Pessoa recebedora</th>
+            <th>Valor</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          {debitTransactions.map(({ value, createdAt, receiverAccount: { user: { username } } }, index) => {
+            const date = new Date(createdAt)
 
-          return (
-            <tr key={index}>
-              <td>{username}</td>
-              <td>{`R$ ${value.toFixed(2)}`}</td>
-              <td>{date.toLocaleString('pt-BR')}</td>
-            </tr>
-          );
-        })}
+            return (
+              <tr key={index}>
+                <td>{username}</td>
+                <td>{`R$ ${value.toFixed(2)}`}</td>
+                <td>{date.toLocaleString('pt-BR')}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       <table>
         <caption>Transações de crédito</caption>
-        <tr>
-          <th>Pessoa doadora</th>
-          <th>Valor</th>
-          <th>Data</th>
-        </tr>
-        {creditTransactions.map(({ value, createdAt, giverAccount: { user: { username } } }, index) => {
-          const date = new Date(createdAt)
+        <thead>
+          <tr>
+            <th>Pessoa doadora</th>
+            <th>Valor</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          {creditTransactions.map(({ value, createdAt, giverAccount: { user: { username } } }, index) => {
+            const date = new Date(createdAt)
 
-          return (
-            <tr key={index}>
-              <td>{username}</td>
-              <td>{`R$ ${value.toFixed(2)}`}</td>
-              <td>{date.toLocaleString('pt-BR')}</td>
-            </tr>
-          );
-        })}
+            return (
+              <tr key={index}>
+                <td>{username}</td>
+                <td>{`R$ ${value.toFixed(2)}`}</td>
+                <td>{date.toLocaleString('pt-BR')}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       <Link to='/user'>Voltar</Link>
     </div>

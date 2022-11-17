@@ -35,14 +35,14 @@ export default function LogIn() {
       <h1>Bem-vinda(o) de volta!</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Nome:
           <input type='text' onChange={({ target }) => setUsername(target.value)} />
         </label>
         <label>
-          Password:
+          Senha:
           <input type='password' onChange={({ target }) => setPassword(target.value)} />
         </label>
-        <button type='submit'>Log in!</button>
+        <button type='submit'>Entrar!</button>
       </form>
     </div>
   )

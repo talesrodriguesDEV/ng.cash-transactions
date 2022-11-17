@@ -30,7 +30,7 @@ export default function SignIn() {
       <h1>Crie agora sua conta NG.CASH!</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Nome:
           <input type='text' onChange={({ target }) => setUsername(target.value)} />
           <small>
             <ul>
@@ -39,7 +39,7 @@ export default function SignIn() {
           </small>
         </label>
         <label>
-          Password:
+          Senha:
           <input type='password' onChange={({ target }) => setPassword(target.value)} />
           <small>
             <ul>
@@ -49,7 +49,7 @@ export default function SignIn() {
             </ul>
           </small>
         </label>
-        <button type='submit'>Sign in!</button>
+        <button type='submit'>Finalizar cadastro!</button>
       </form>
     </div>
   )
