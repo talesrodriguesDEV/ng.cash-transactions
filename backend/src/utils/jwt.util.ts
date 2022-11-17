@@ -1,11 +1,9 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface IUserInfo extends JwtPayload {
-  username?: string,
-}
+import { IUserInfo } from '../interfaces/IUserInfo';
 
 const generateToken = (username: string) => jwt.sign({ username }, process.env.JWT_SECRET as string, { expiresIn: '24h' });
 

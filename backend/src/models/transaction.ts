@@ -52,31 +52,3 @@ Transaction.init({
 });
 
 export default Transaction;
-
-// 'use strict';
-
-// const { Model } = require('sequelize');
-// import { Sequelize } from 'sequelize';
-
-// module.exports = (sequelize: Sequelize, DataTypes: { INTEGER: any; FLOAT: any; }) => {
-//   class Transaction extends Model {
-//     static associate(models: typeof Model) {
-//       this.belongsTo(models.Account, { foreignKey: 'debitedAccountId', as: 'giverAccount' });
-//       this.belongsTo(models.Account, { foreignKey: 'creditedAccountId', as: 'receiverAccount' });
-//     }
-//   }
-
-//   Transaction.init(
-//     {
-//       debitedAccountId: DataTypes.INTEGER,
-//       creditedAccountId: DataTypes.INTEGER,
-//       value: DataTypes.FLOAT,
-//     },
-//     {
-//       sequelize,
-//       modelName: 'Transaction',
-//     }
-//   );
-
-//   return Transaction;
-// };

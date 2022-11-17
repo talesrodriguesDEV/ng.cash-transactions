@@ -4,12 +4,8 @@ import hashUtil from '../utils/hash.util';
 
 import { Request, Response } from 'express';
 import { IRequest } from '../interfaces/IRequest';
+import { IUserPlusAccount } from '../interfaces/IUserPlusAccount';
 
-import User from '../models/user';
-
-interface IUserPlusAccount extends User {
-  account?: { id: number, balance: number },
-}
 
 const listUsers = async (_req: Request, res: Response) => {
   const users = await UserService.listUsers();

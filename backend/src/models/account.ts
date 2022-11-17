@@ -44,30 +44,3 @@ Account.hasMany(Transaction, { foreignKey: 'creditedAccountId', as: 'creditTrans
 Transaction.belongsTo(Account, { foreignKey: 'creditedAccountId', as: 'receiverAccount' });
 
 export default Account;
-
-// 'use strict';
-
-// const { Model } = require('sequelize');
-// import { Sequelize } from 'sequelize';
-
-// module.exports = (sequelize: Sequelize, DataTypes: { FLOAT: any; }) => {
-//   class Account extends Model {
-//     static associate(models: typeof Model) {
-//       this.hasOne(models.User, { foreignKey: 'accountId', as: 'user' });
-//       this.hasMany(models.Transaction, { foreignKey: 'debitedAccountId', as: 'debitTransactions' });
-//       this.hasMany(models.Transaction, { foreignKey: 'creditedAccountId', as: 'creditTransactions' });
-//     }
-//   }
-
-//   Account.init(
-//     {
-//       balance: DataTypes.FLOAT,
-//     },
-//     {
-//       sequelize,
-//       modelName: 'Account',
-//     }
-//   );
-
-//   return Account;
-// };

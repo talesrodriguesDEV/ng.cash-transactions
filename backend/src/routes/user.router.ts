@@ -9,7 +9,7 @@ const { addNewUser, getUserBalance, userTransaction, listUserTransactions } = Us
 const { validateUsername, validatePassword } = UserMiddlewares;
 const { isUserLogged } = LoginMiddlewares;
 
-// router.get('/', UserController.listUsers);
+router.get('/', UserController.listUsers);
 router.post('/new', validateUsername, validatePassword, addNewUser);
 
 router.use(isUserLogged);
