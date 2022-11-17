@@ -38,8 +38,8 @@ export default function User() {
     <div>
       <h1>Hi, {globalUsername}!</h1>
       <h2>{`R$ ${balance.toFixed(2)}`}</h2>
-      <button onClick={() => navigate('/transaction')}>Efetuar transação</button>
-      <button>Consultar transações</button>
+      <button onClick={() => navigate('/make-transaction')}>Efetuar transação</button>
+      <button onClick={() => navigate('/transactions-list')}>Consultar transações</button>
       <button>Sair</button>
     </div>
   )

@@ -7,6 +7,7 @@ import LogIn from './pages/LogIn';
 import User from './pages/User';
 import NotFound from './pages/NotFound';
 import Transaction from './pages/Transaction';
+import TransactionsList from './pages/TransactionsList';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path='/signin' element={ <SignIn /> } />
           <Route path='/login' element={ <LogIn /> } />
           <Route path='/user' element={ <User /> } />
-          <Route path='/transaction' element={ <Transaction /> } />
+          <Route path='/make-transaction' element={ <Transaction /> } />
+          <Route path='/transactions-list' element={ <TransactionsList /> } />
           <Route path='*' element={ <NotFound /> } />
         </Routes>
       </BrowserRouter>

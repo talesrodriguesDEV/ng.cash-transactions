@@ -32,8 +32,36 @@ const userTransaction = async (debitedAccountId: number, value: number, credited
 }
 
 const listUserTransactions = async (accountId: number) => {
-  const debitTransactions = await Transaction.findAll({ where: { debitedAccountId: accountId } });
-  const creditTransactions = await Transaction.findAll({ where: { creditedAccountId: accountId } });
+  const debitTransactions = await Transaction.findAll({
+    where: { debitedAccountId: accountId },
+    include: [
+      {
+        model: Account,
+        as: 'receiverAccount',
+        include: [
+          {
+            model: User,
+            as: 'user',
+          },
+        ]
+      },
+    ],
+  });
+  const creditTransactions = await Transaction.findAll({
+    where: { creditedAccountId: accountId },
+    include: [
+      {
+        model: Account,
+        as: 'giverAccount',
+        include: [
+          {
+            model: User,
+            as: 'user',
+          },
+        ]
+      },
+    ],
+  });
 
   return { debitTransactions, creditTransactions };
 }
