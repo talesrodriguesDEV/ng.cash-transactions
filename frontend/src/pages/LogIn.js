@@ -19,8 +19,7 @@ export default function LogIn() {
         body: JSON.stringify({ username, password }),
       })
       .then(response => response.json())
-      .then((json) => {
-        console.log(json);
+      .then(json => {
 
         if (json.message) window.alert('Usuário ou senha inválidos.');
         else {

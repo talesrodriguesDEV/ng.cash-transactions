@@ -16,7 +16,7 @@ export default function SignIn() {
         body: JSON.stringify({ username, password }),
       })
       .then(response => response.json())
-      .then((json) => {
+      .then(json => {
         console.log(json);
 
         if (json.message === 'This username already exists') window.alert('Usuário já cadastrado.')
