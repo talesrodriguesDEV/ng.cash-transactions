@@ -8,6 +8,7 @@ import User from './pages/User';
 import NotFound from './pages/NotFound';
 import Transaction from './pages/Transaction';
 import TransactionsList from './pages/TransactionsList';
+import React from 'react';
 
 function App() {
   return (

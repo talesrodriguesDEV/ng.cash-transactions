@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TransactionsContext from '../context/TransactionsContext';
+import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import handleReaload from '../utils/handleReload';
 
 export default function User() {
-  const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext);
+  const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext) as TransactionsContextType;
 
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export default function User() {
     if (!token || !username || !balance) {
       const supply = handleReaload(setUsername, setToken, setBalance);
 
-      supplyToken = supply.token;
+      supplyToken = supply.token as string;
     }
 
     fetch('http://localhost:3001/users/balance',

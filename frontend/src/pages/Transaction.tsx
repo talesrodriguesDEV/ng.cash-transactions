@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
-import TransactionsContext from '../context/TransactionsContext';
+import React, { useEffect, useState, useContext, FormEvent } from 'react'
+import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import { useNavigate, Link } from 'react-router-dom';
 import handleReaload from '../utils/handleReload';
 
 export default function Transaction() {
-  const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext);
+  const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext) as TransactionsContextType;
 
   const [allUsers, setAllUsers] = useState([]);
   const [destinyUser, setDestinyUser] = useState('');
@@ -25,7 +25,7 @@ export default function Transaction() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const makeTransaction = (e) => {
+  const makeTransaction = (e: FormEvent) => {
     e.preventDefault();
 
     const destiny = allUsers.find(({ username }) => username === destinyUser);
@@ -43,7 +43,7 @@ export default function Transaction() {
           'User-Token': token,
         },
         body: JSON.stringify({
-          destinyAccountId: destiny.accountId,
+          destinyAccountId: destiny['accountId'],
           value: transactionValue,
         }),
       })
@@ -69,7 +69,7 @@ export default function Transaction() {
         </div>
         <div className='w-full flex justify-around'>
           <label className='text-xl mr-10'>Valor da transação:</label>
-          <input className='input' type='number' step="0.01" min="0.01" max={balance} onChange={({ target }) => setTransactionValue(target.value)} />
+          <input className='input' type='number' step="0.01" min="0.01" max={balance} onChange={({ target }) => setTransactionValue(Number(target.value))} />
         </div>
         <button className='btn' type='submit'>Enviar</button>
       </form>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function SignIn() {
@@ -7,7 +7,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     fetch('http://localhost:3001/users/new',
       {

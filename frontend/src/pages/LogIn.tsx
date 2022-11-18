@@ -1,17 +1,18 @@
-import React, { useContext, useState } from 'react'
-import TransactionsContext from '../context/TransactionsContext';
+import React, { FormEvent, useContext, useState } from 'react'
+import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function LogIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { setToken } = useContext(TransactionsContext);
+  const { setToken } = useContext(TransactionsContext) as TransactionsContextType;
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     fetch('http://localhost:3001/login',
       {
         method: 'POST',

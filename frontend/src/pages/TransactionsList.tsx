@@ -16,7 +16,7 @@ export default function TransactionsList() {
       {
         headers: {
           'Content-Type': 'application/json',
-          'User-Token': token,
+          'User-Token': token as string,
         },
       })
       .then(response => response.json())
@@ -47,7 +47,7 @@ export default function TransactionsList() {
               return (
                 <tr key={index}>
                   <td className='w-1/3 border p-2 text-center'>{username}</td>
-                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${value.toFixed(2)}`}</span></td>
+                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${Number(value).toFixed(2)}`}</span></td>
                   <td className='w-1/3 border p-2 text-center'>{date.toLocaleString('pt-BR')}</td>
                 </tr>
               );
@@ -70,7 +70,7 @@ export default function TransactionsList() {
               return (
                 <tr key={index}>
                   <td className='w-1/3 border p-2 text-center'>{username}</td>
-                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${value.toFixed(2)}`}</span></td>
+                  <td className='w-1/3 border p-2 text-center'><span className='text-red-700'>{`R$ ${Number(value).toFixed(2)}`}</span></td>
                   <td className='w-1/3 border p-2 text-center'>{date.toLocaleString('pt-BR')}</td>
                 </tr>
               );

@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TransactionsContext from './TransactionsContext';
 import logo from '../images/logo.png';
 
-export default function TransactionsProvider({ children }) {
+export default function TransactionsProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     const localToken = localStorage.getItem('token');
-    setToken(localToken);
+    setToken(localToken as string);
 
     const localUsername = localStorage.getItem('username');
-    setUsername(localUsername);
+    setUsername(localUsername as string);
   }, []);
 
   const objectValue = {
