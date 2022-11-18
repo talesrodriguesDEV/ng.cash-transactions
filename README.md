@@ -2,23 +2,9 @@
 
 ## Preview
 
-### Home
-![Home](./home.png)
+<img src="./home.png" width=100 /> <img src="./signIn.png" width=100 /> <img src="./logIn.png" width=100 />
 
-### Sign in
-![SigIn](./sigIn.png)
-
-### Log in
-![LogIn](./logIn.png)
-
-### User
-![User](./user.png)
-
-### Make transaction
-![Transaction](./transaction.png | width=100)
-
-### Transactions list
-![Transactions](./transactions.png | width=100)
+<img src="./user.png" width=100 /> <img src="./transaction.png" width=100 /> <img src="./transactions.png" width=100 />
 
 ## Instalação (equivale ao download da pasta .zip e conseguinte descompactação)
 
