@@ -3,16 +3,16 @@
 ## Preview
 
 ### Home
-![Home](./home.png | width=100)
+![Home](./home.png)
 
 ### Sign in
-![SigIn](./sigIn.png | width=100)
+![SigIn](./sigIn.png)
 
 ### Log in
-![LogIn](./logIn.png | width=100)
+![LogIn](./logIn.png)
 
 ### User
-![User](./user.png | width=100)
+![User](./user.png)
 
 ### Make transaction
 ![Transaction](./transaction.png | width=100)
