@@ -2,9 +2,9 @@
 
 ## Preview
 
-<img src="./home.png" width=100 /> <img src="./signIn.png" width=100 /> <img src="./logIn.png" width=100 />
+<img src="./home.png" width=400 /> <img src="./signIn.png" width=400 /> <img src="./logIn.png" width=400 />
 
-<img src="./user.png" width=100 /> <img src="./transaction.png" width=100 /> <img src="./transactions.png" width=100 />
+<img src="./user.png" width=400 /> <img src="./transaction.png" width=400 /> <img src="./transactions.png" width=400 />
 
 ## Instalação (equivale ao download da pasta .zip e conseguinte descompactação)
 
