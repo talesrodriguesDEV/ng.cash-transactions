@@ -20,7 +20,7 @@
 ### Transactions list
 ![Transactions](./transactions.png | width=100)
 
-## Instalação (equivale ao download da pasta .zip e descompactação)
+## Instalação (equivale ao download da pasta .zip e conseguinte descompactação)
 
 ```bash
 git clone git@github.com:talesrodriguesDEV/ng.cash-transactions.git
