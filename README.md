@@ -41,8 +41,8 @@ docker-compose up -d
 
 ```bash
 docker exec -it ngcash_node bash
-npx sequelize-cli db:create && npx sequelize-cli db:migrate
 npm run build
+npx sequelize-cli db:create && npx sequelize-cli db:migrate
 npm start
 ```
 
