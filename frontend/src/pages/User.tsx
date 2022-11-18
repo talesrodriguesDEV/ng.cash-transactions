@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import handleReaload from '../utils/handleReload';
+import nodePort from '../utils/nodePort';
 
 export default function User() {
   const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext) as TransactionsContextType;
@@ -17,7 +18,7 @@ export default function User() {
       supplyToken = supply.token as string;
     }
 
-    fetch('http://localhost:3001/users/balance',
+    fetch(`http://localhost:${nodePort}/users/balance`,
       {
         headers: {
           'Content-Type': 'application/json',

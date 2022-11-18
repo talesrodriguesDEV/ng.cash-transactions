@@ -3,6 +3,7 @@ version: '3.1'
 services:
 
   db:
+    container_name: ngcash_db
     image: postgres
     restart: always
     environment:
@@ -17,6 +18,7 @@ services:
       - $ADMINER_PORT:$ADMINER_PORT
 
   node:
+    container_name: ngcash_node
     image: node
     restart: always
     ports:

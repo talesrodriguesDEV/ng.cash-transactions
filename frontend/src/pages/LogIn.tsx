@@ -1,6 +1,7 @@
 import React, { FormEvent, useContext, useState } from 'react'
 import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import { useNavigate, Link } from 'react-router-dom';
+import nodePort from '../utils/nodePort';
 
 export default function LogIn() {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ export default function LogIn() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    fetch('http://localhost:3001/login',
+    fetch(`http://localhost:${nodePort}/login`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

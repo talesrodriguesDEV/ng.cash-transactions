@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
+import nodePort from '../utils/nodePort';
 
 export default function TransactionsList() {
   const [debitTransactions, setDebitTransactions] = useState([]);
@@ -12,7 +13,7 @@ export default function TransactionsList() {
 
     if (!token) navigate('/');
 
-    fetch('http://localhost:3001/users/transactions-list',
+    fetch(`http://localhost:${nodePort}/users/transactions-list`,
       {
         headers: {
           'Content-Type': 'application/json',

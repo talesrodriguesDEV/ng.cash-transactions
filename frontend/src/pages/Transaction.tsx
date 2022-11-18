@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, FormEvent } from 'react'
 import TransactionsContext, { TransactionsContextType } from '../context/TransactionsContext';
 import { useNavigate, Link } from 'react-router-dom';
 import handleReaload from '../utils/handleReload';
+import nodePort from '../utils/nodePort';
 
 export default function Transaction() {
   const { username, setUsername, balance, setBalance, token, setToken } = useContext(TransactionsContext) as TransactionsContextType;
@@ -15,7 +16,7 @@ export default function Transaction() {
   useEffect(() => {
     if (!token || !username || !balance) handleReaload(setUsername, setToken, setBalance);
 
-    fetch('http://localhost:3001/users',
+    fetch(`http://localhost:${nodePort}/users`,
       {
         headers: { 'Content-Type': 'application/json' },
       })
@@ -35,7 +36,7 @@ export default function Transaction() {
       return;
     };
 
-    fetch('http://localhost:3001/users/transaction',
+    fetch(`http://localhost:${nodePort}/users/transaction`,
       {
         method: 'POST',
         headers: {

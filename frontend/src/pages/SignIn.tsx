@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
+import nodePort from '../utils/nodePort';
 
 export default function SignIn() {
   const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ export default function SignIn() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    fetch('http://localhost:3001/users/new',
+    fetch(`http://localhost:${nodePort}/users/new`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -17,8 +18,6 @@ export default function SignIn() {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
-
         if (json.message === 'This username already exists') window.alert('Usuário já cadastrado.')
         else if (json.message) window.alert('Cadastro inválido.');
         else navigate('/login');
